@@ -8,3 +8,16 @@ th {
     background-color: white;
     padding: 15px;
 }
+
+
+/* top-0 left-0 h-full focus:absolute focus:w-[200%] focus:border-[.40px] */
+input:focus {
+    position: absolute;
+    inset: 0;
+    width: 220%;
+    z-index: 10;
+    height: 220%;
+    box-shadow: -5px 16px 49px -16px rgba(0, 0, 0, 0.69);
+    -webkit-box-shadow: -11px 16px 49px -16px rgba(0, 0, 0, 0.69);
+    -moz-box-shadow: -11px 16px 49px -16px rgba(0, 0, 0, 0.69);
+}

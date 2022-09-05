@@ -1,31 +1,30 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { columns, data } from './data'
 
 const Table = () => {
-
-    const tableRef = React.useRef<any>({});
+    const tableRef = React.useRef<any>(null);
+    const dataRef = React.useRef<any>({});
     const timeOuts = React.useRef<any>({});
 
     const [state, setState] = React.useState(data);
 
     const setValue = (index1: any, index2: any) => {
         const newValue: any = [...state];
-        newValue[index1][index2] = tableRef.current?.[index1]?.[index2];
+        newValue[index1][index2] = dataRef.current?.[index1]?.[index2];
         setState(newValue);
     }
 
     React.useEffect(() => {
-        console.log('State Update...')
 
     }, [state])
 
 
     const debounce = ({ index1, index2 }: any, value: any) => {
 
-        tableRef.current = {
-            ...(tableRef.current || {}),
-            [index1]: tableRef.current?.[index1] ? {
-                ...tableRef.current?.[index1],
+        dataRef.current = {
+            ...(dataRef.current || {}),
+            [index1]: dataRef.current?.[index1] ? {
+                ...dataRef.current?.[index1],
                 [index2]: value
             } : { [index2]: value }
         }
@@ -66,12 +65,9 @@ const Table = () => {
         }
     })
 
-    console.log('rendering...');
-
-
     return (
-        <table className='overflow-scroll'>
-            <thead className='sticky top-0  bg-white'>
+        <table ref={tableRef} className='overflow-scroll'>
+            <thead className='sticky top-0 z-index-100 bg-white '>
                 <tr className='' >
                     {
                         columns.map((column, index) => {
@@ -87,10 +83,16 @@ const Table = () => {
                     data.map((row: any, index1) => {
                         return <tr key={index1} >
                             {
-                                columns.map((column: string, index2) => {
+                                columns.map((column: string) => {
                                     const value = row[column];
-                                    return <td key={index1 + index2} >
-                                        <input className='outline-none' onChange={(e) => handleChange({ index1, index2: column }, e)} type={'text'} value={undefined} defaultValue={value} />
+                                    return <td key={`${index1}${column}`} className="relative" >
+                                        <input
+                                            id={`${index1}${column}`}
+                                            className='outline-none'
+                                            onChange={(event: any) => handleChange({ index1, index2: column }, event)}
+                                            type={'text'}
+                                            value={undefined}
+                                            defaultValue={value} />
                                     </td>
                                 })
                             }
