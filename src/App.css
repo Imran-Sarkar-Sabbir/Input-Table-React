@@ -85,3 +85,7 @@ textarea:focus {
 .hide {
     display: none;
 }
+
+.flex {
+    display: flex;
+}
