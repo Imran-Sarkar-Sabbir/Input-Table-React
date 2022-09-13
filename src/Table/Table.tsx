@@ -25,6 +25,7 @@ const Table = ({
                 {
                     data.map((row: any, index1: any) => {
                         return <tr key={index1} >
+
                             {
                                 columns.map((column: string) => {
                                     const value = row[column];

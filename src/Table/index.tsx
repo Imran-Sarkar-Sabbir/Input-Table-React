@@ -6,12 +6,6 @@ import useTable from './useTable'
 const Index = () => {
 
     const [tableData, setTableData] = React.useState(data);
-
-    React.useEffect(() => {
-        console.log(tableData);
-    }, [tableData])
-
-
     const { controller } = useTable(tableData, setTableData)
 
     const myColums = React.useMemo(() => columns, []);
