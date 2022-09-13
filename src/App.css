@@ -81,3 +81,7 @@ textarea:focus {
     -webkit-box-shadow: -11px 16px 49px -16px rgba(0, 0, 0, 0.69);
     -moz-box-shadow: -11px 16px 49px -16px rgba(0, 0, 0, 0.69);
 }
+
+.hide {
+    display: none;
+}
