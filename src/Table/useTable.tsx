@@ -72,7 +72,7 @@ const useTable = (data: any, setTableData: any) => {
 
     const controller = React.useMemo(() => ({
         controller: { tableRef, tableData: data, handleChange, handleEnter }
-    }), [data])
+    }), [])
 
     return controller;
 }
